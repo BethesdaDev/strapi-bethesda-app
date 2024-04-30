@@ -1,5 +1,28 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface SharedDay extends Schema.Component {
+  collectionName: 'components_shared_days';
+  info: {
+    displayName: 'Day';
+    icon: 'calendar';
+  };
+  attributes: {
+    Day: Attribute.Enumeration<
+      [
+        'Lunes',
+        'Martes',
+        'Mi\u00E9rcoles',
+        'Jueves',
+        'Viernes',
+        'S\u00E1bado',
+        'Domingo'
+      ]
+    > &
+      Attribute.Required;
+    Time: Attribute.Time & Attribute.Required;
+  };
+}
+
 export interface SharedMedia extends Schema.Component {
   collectionName: 'components_shared_media';
   info: {
@@ -65,6 +88,7 @@ export interface SharedSlider extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'shared.day': SharedDay;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;

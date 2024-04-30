@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "organizacions",
+  "info": {
+    "singularName": "organizacion",
+    "pluralName": "organizacions",
+    "displayName": "Organizacion"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Cover": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "Description": {
+      "type": "richtext"
+    }
+  }
+}

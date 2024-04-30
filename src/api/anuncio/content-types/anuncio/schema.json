@@ -4,7 +4,8 @@
   "info": {
     "singularName": "anuncio",
     "pluralName": "anuncios",
-    "displayName": "Anuncio"
+    "displayName": "Anuncio",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,17 +17,17 @@
       "required": true,
       "maxLength": 30
     },
-    "PublishDate": {
+    "Date": {
       "type": "date",
       "required": true
     },
     "Cover": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "Description": {
       "type": "text",

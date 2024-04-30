@@ -362,44 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiAnuncioAnuncio extends Schema.CollectionType {
-  collectionName: 'anuncios';
-  info: {
-    singularName: 'anuncio';
-    pluralName: 'anuncios';
-    displayName: 'Anuncio';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    Title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 30;
-      }>;
-    PublishDate: Attribute.Date & Attribute.Required;
-    Cover: Attribute.Media & Attribute.Required;
-    Description: Attribute.Text & Attribute.Required;
-    URL: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::anuncio.anuncio',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::anuncio.anuncio',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -826,6 +788,147 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiAnuncioAnuncio extends Schema.CollectionType {
+  collectionName: 'anuncios';
+  info: {
+    singularName: 'anuncio';
+    pluralName: 'anuncios';
+    displayName: 'Anuncio';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 30;
+      }>;
+    Date: Attribute.Date & Attribute.Required;
+    Cover: Attribute.Media & Attribute.Required;
+    Description: Attribute.Text & Attribute.Required;
+    URL: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::anuncio.anuncio',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::anuncio.anuncio',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEventoEvento extends Schema.CollectionType {
+  collectionName: 'eventos';
+  info: {
+    singularName: 'evento';
+    pluralName: 'eventos';
+    displayName: 'Evento';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Cover: Attribute.Media & Attribute.Required;
+    Title: Attribute.String & Attribute.Required;
+    EventDate: Attribute.DateTime & Attribute.Required;
+    URL: Attribute.String;
+    Description: Attribute.Text & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::evento.evento',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::evento.evento',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGrupoGrupo extends Schema.CollectionType {
+  collectionName: 'grupos';
+  info: {
+    singularName: 'grupo';
+    pluralName: 'grupos';
+    displayName: 'Grupo';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Cover: Attribute.Media & Attribute.Required;
+    Name: Attribute.String & Attribute.Required;
+    Leader: Attribute.String & Attribute.Required;
+    Location: Attribute.String & Attribute.Required;
+    Description: Attribute.Text & Attribute.Required;
+    DayList: Attribute.Component<'shared.day', true> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::grupo.grupo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::grupo.grupo',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOrganizacionOrganizacion extends Schema.CollectionType {
+  collectionName: 'organizacions';
+  info: {
+    singularName: 'organizacion';
+    pluralName: 'organizacions';
+    displayName: 'Organizacion';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Cover: Attribute.Media & Attribute.Required;
+    Name: Attribute.String & Attribute.Required;
+    Description: Attribute.RichText;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::organizacion.organizacion',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::organizacion.organizacion',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -836,7 +939,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::anuncio.anuncio': ApiAnuncioAnuncio;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -845,6 +947,10 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::anuncio.anuncio': ApiAnuncioAnuncio;
+      'api::evento.evento': ApiEventoEvento;
+      'api::grupo.grupo': ApiGrupoGrupo;
+      'api::organizacion.organizacion': ApiOrganizacionOrganizacion;
     }
   }
 }
